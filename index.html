@@ -82,6 +82,22 @@
     @media (min-width: 1024px) {
         .header-desktop { display: flex; }
     }
+  .dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -97,7 +113,9 @@
 <!-- HEADER TABLET -->
 <header class="header-tablet">
     <div class="icon burger" onclick="toggleSidebar('tablet')">☰</div>
-    <div class="icon usericon">👤</div>
+  <div class="icon usericon"><div class="dropdown">👤
+  <div class="dropdown-content">Login</div>
+</div></div>
     <div class="username">Aluno SENAI</div>
     <div class="icon mobile-search" onclick="toggleSearch('tablet')">🔍</div>
     <div class="logo">LOGO</div>
@@ -120,21 +138,36 @@
 
 <!-- SIDEBARS -->
 <nav class="sidebar" id="sidebar-mobile">
-    <a href="#">Home Mobile</a>
-    <a href="#">Sobre Mobile</a>
-    <a href="#">Contato Mobile</a>
+    <a href="#">In&iacute;cio 📱</a>
+    <a href="#">Compras e pedidos</a>
+    <a href="#">Perfil e favoritos</a>
+    <a href="#">Categorias</a>
+    <a href="#">Mais vendidos</a>
+    <a href="#">Populares</a>
+    <a href="#">Quem somos n&oacute;s?</a>
+    <a href="#">@GameMania</a>
 </nav>
 
 <nav class="sidebar" id="sidebar-tablet">
-    <a href="#">Home Tablet</a>
-    <a href="#">Perfil Tablet</a>
-    <a href="#">Configurações Tablet</a>
+    <a href="#">In&iacute;cio 📲</a>
+    <a href="#">Compras e pedidos</a>
+    <a href="#">Perfil e favoritos</a>
+    <a href="#">Categorias</a>
+    <a href="#">Mais vendidos</a>
+    <a href="#">Populares</a>
+    <a href="#">Quem somos n&oacute;s?</a>
+    <a href="#">@GameMania</a>
 </nav>
 
 <nav class="sidebar" id="sidebar-desktop">
-    <a href="#">Home Desktop</a>
-    <a href="#">Dashboard Desktop</a>
-    <a href="#">Configurações Desktop</a>
+    <a href="#">In&iacute;cio 💻</a>
+    <a href="#">Compras e pedidos</a>
+    <a href="#">Perfil e favoritos</a>
+    <a href="#">Categorias</a>
+    <a href="#">Mais vendidos</a>
+    <a href="#">Populares</a>
+    <a href="#">Quem somos n&oacute;s?</a>
+    <a href="#">@GameMania</a>
 </nav>
 
 <script>
