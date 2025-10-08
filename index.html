@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Headers Responsivos SENAI</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background: #333;
+        color: white;
+        position: relative;
+    }
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .icon {
+        cursor: pointer;
+        padding: 5px;
+    }
+    .username {
+        margin-left: 5px;
+    }
+    input[type="text"] {
+        padding: 5px;
+        border: none;
+        border-radius: 3px;
+    }
+    nav.sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        height: 100%;
+        width: 250px;
+        background: #444;
+        overflow-y: auto;
+        transition: left 0.3s ease;
+        padding-top: 60px;
+        z-index: 1000;
+    }
+    nav.sidebar a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+    }
+    nav.sidebar a:hover {
+        background: #555;
+    }
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+
+    /* Escondendo todos headers inicialmente */
+    .header-mobile,
+    .header-tablet,
+    .header-desktop {
+        display: none;
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+        .header-mobile { display: flex; }
+    }
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .header-tablet { display: flex; }
+    }
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .header-desktop { display: flex; }
+    }
+</style>
+</head>
+<body>
+
+<!-- HEADER MOBILE -->
+<header class="header-mobile">
+    <div class="icon burger" onclick="toggleSidebar('mobile')">☰</div>
+    <div class="icon mobile-search" onclick="toggleSearch('mobile')">🔍</div>
+    <div class="logo">LOGO</div>
+    <div class="icon cart">🛒</div>
+</header>
+
+<!-- HEADER TABLET -->
+<header class="header-tablet">
+    <div class="icon burger" onclick="toggleSidebar('tablet')">☰</div>
+    <div class="icon usericon">👤</div>
+    <div class="username">Aluno SENAI</div>
+    <div class="icon mobile-search" onclick="toggleSearch('tablet')">🔍</div>
+    <div class="logo">LOGO</div>
+    <div class="icon cart">🛒</div>
+</header>
+
+<!-- HEADER DESKTOP -->
+<header class="header-desktop">
+    <div class="icon burger" onclick="toggleSidebar('desktop')">☰</div>
+    <div class="icon usericon">👤</div>
+    <div class="username">Aluno SENAI</div>
+    <div class="searchbar desktop-search">
+        <input type="text" placeholder="Buscar...">
+    </div>
+    <div class="logo">LOGO</div>
+    <div class="icon cart">🛒</div>
+</header>
+
+<div class="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBARS -->
+<nav class="sidebar" id="sidebar-mobile">
+    <a href="#">Home Mobile</a>
+    <a href="#">Sobre Mobile</a>
+    <a href="#">Contato Mobile</a>
+</nav>
+
+<nav class="sidebar" id="sidebar-tablet">
+    <a href="#">Home Tablet</a>
+    <a href="#">Perfil Tablet</a>
+    <a href="#">Configurações Tablet</a>
+</nav>
+
+<nav class="sidebar" id="sidebar-desktop">
+    <a href="#">Home Desktop</a>
+    <a href="#">Dashboard Desktop</a>
+    <a href="#">Configurações Desktop</a>
+</nav>
+
+<script>
+var activeSidebar = null;
+
+function toggleSidebar(type) {
+    var sidebarId = "sidebar-" + type;
+    var sidebar = document.getElementById(sidebarId);
+    var overlay = document.querySelector('.overlay');
+
+    // Fechar outras sidebars
+    var sidebars = document.querySelectorAll('.sidebar');
+    for (var i = 0; i < sidebars.length; i++) {
+        sidebars[i].style.left = "-250px";
+    }
+
+    // Alternar sidebar atual
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px";
+        overlay.style.display = "none";
+    } else {
+        sidebar.style.left = "0px";
+        overlay.style.display = "block";
+    }
+}
+
+function closeSidebar() {
+    var sidebars = document.querySelectorAll('.sidebar');
+    for (var i = 0; i < sidebars.length; i++) {
+        sidebars[i].style.left = "-250px";
+    }
+    document.querySelector('.overlay').style.display = "none";
+}
+
+function toggleSearch(type) {
+    var headerClass = "header-" + type;
+    var header = document.querySelector("." + headerClass);
+    var searchbar = header.querySelector(".searchbar");
+    if (searchbar) {
+        if (searchbar.style.display === "block") {
+            searchbar.style.display = "none";
+        } else {
+            searchbar.style.display = "block";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
